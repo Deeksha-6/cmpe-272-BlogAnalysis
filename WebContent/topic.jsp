@@ -44,9 +44,9 @@
 				<ul class="nav navbar-nav">
                     <li class="active"><a href="index.jsp">Home</a>
                     </li>
-                    <li><a href="about.html">About Us</a>
+                    <li><a href="about.jsp">About Us</a>
                     </li>
-                    <li><a href="contact.html">Contact Us</a>
+                    <li><a href="contact.jsp">Contact Us</a>
                     </li>
                 </ul>
 			</div>
@@ -108,7 +108,7 @@
 
 							<div class="form-group">
 								<label for="message" class="col-lg-2 control-label">Comment</label>
-								<div class="col-lg-10">
+								<div class="col-lg-10" id=appendcomments>
 									<textarea class="form-control" rows="3" id="comments" name="comments" ></textarea>
 									<span class="help-block">Comment help text</span>
 								</div>
@@ -125,9 +125,9 @@
 						<div class="clearfix" style="margin-top: 30px;">
 							<%
 								st = con.createStatement();
-								rs = st.executeQuery("select Comment from blogcomments WHERE TopicId = \"" + idd[1] + "\"");
+								rs = st.executeQuery("select Comment from blogcomments WHERE TopicId = \"" + idd[1] + "\" order by date desc limit 6");
 								//System.out.println("got data");
-								if (rs.next()) {
+							
 									//                          	System.out.println("inside if");
 									while (rs.next()) {
 										String msg = rs.getString("Comment");
@@ -142,9 +142,7 @@
 
 							<%
 								}
-								} else {
-									out.println("No Records Found");
-								}
+								
 							%>
 
 
@@ -167,23 +165,46 @@
 			<!-- End main content -->
 
 			<div class="col-md-3">
-            <p class="lead">Side Bar Links</p>
-                <div class="list-group">
+               <div class="list-group">
                     <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Side Bar Link 1</h4>
-                        <p class="list-group-item-text">Recent Blog Posts</p>
-                      </a>
-                    <a href="#" class="list-group-item">Side Bar Link 2</a>
-                    <a href="#" class="list-group-item">Side Bar Link 3</a>
-                    <a href="#" class="list-group-item">Side Bar Link 4</a>
-                    <a href="#" class="list-group-item">Side Bar Link 5</a>
-                    <a href="#" class="list-group-item active">Side Bar Link 6</a>
-                </div>
+                        <h4 class="list-group-item-heading">Recent Blog Posts</h4>
+                      </a><%
+                      
+                      			Class.forName("com.mysql.jdbc.Driver").newInstance();
+                      			Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/sentiword", "root", "power");
+                      			Statement st1 = con1.createStatement();
+								//                      	String ids = "<script>document.writeln(data)</script>";
 
+					String query = "SELECT i.Id, Topic, g.date FROM blogissues i " +
+							"INNER JOIN " +
+							"( " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 1 ORDER BY date DESC LIMIT 1) a " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 2 ORDER BY date DESC LIMIT 1) b " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 3 ORDER BY date DESC LIMIT 1) c " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 4 ORDER BY date DESC LIMIT 1) d " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 5 ORDER BY date DESC LIMIT 1) e " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 6 ORDER BY date DESC LIMIT 1) f " +
+							") g ON g.TopicId = i.id " +
+							"ORDER BY g.date DESC";
+					 ResultSet rs1 = st1.executeQuery(query);	
+                     
+					while(rs1.next()){
+                      %>
+ 		                   <a href="topic.jsp?id=<%=rs1.getString("Id")%>" class="list-group-item" ><%=rs1.getString("Topic") %></a>
+                    <%
+                    }
+                    %>
+                    
+                    </div>
 
 				<a class="btn btn-danger btn-block btn-lg" onclick="gotochart()">Monthly
-					Analysis of all the Post</a> <a class="btn btn-danger btn-block btn-lg"
-					onclick="gotochart1()">Overall Analysis of each Post</a>
+					Analysis of this Post</a> <a class="btn btn-danger btn-block btn-lg"
+					onclick="gotochart1()">Analyze this Post</a>
 
 			</div>
 
@@ -228,9 +249,9 @@
 	<script type="text/javascript">
 	$("#submitbutton").click(function() {
 		var boxval = $("#comments").val();
-		alert("boxval"+boxval);
+	//	alert("boxval"+boxval);
 		var dataString = 'comments='+ boxval;
-		alert("datastring"+dataString);
+	//	alert("datastring"+dataString);
 		issueid=<%=idd[1]%>;
 		url='appendComments.jsp?issueid='+issueid;
 		 if(boxval=='')
@@ -247,20 +268,9 @@
 				data: dataString,
 				cache: false,
 				success: function(html){
-					//var x = JSON.stringify(html);
-					//alert("Output : " + x);
 					
-				/*	var $newdiv1 = $( "<div id='update'/>"+html ),
-  					newdiv2 = document.createElement( "div" ),
-  					existingdiv1 = document.getElementById( "update" );
- 
-					$( "body" ).append( $newdiv1, [ newdiv2, existingdiv1 ] );
-					*/
-					
-					$("ol#update").prepend(html);
-					$("ol#update").slideDown("slow");
-					document.getElementById('comments').value='';
-					$("#flash").hide();
+				window.location.reload();
+				
 				}
 				
 				});
