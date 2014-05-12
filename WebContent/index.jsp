@@ -38,9 +38,9 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.jsp">Home</a>
                     </li>
-                    <li><a href="about.html">About Us</a>
+                    <li><a href="about.jsp">About Us</a>
                     </li>
-                    <li><a href="contact.html">Contact Us</a>
+                    <li><a href="contact.jsp">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -78,34 +78,22 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="images/top.jpg" alt="">
+                                    <img class="slide-image" src="images/toptop1.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="images/top2.jpg" alt="">
+                                    <img class="slide-image" src="images/toptop2.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="images/top3.jpg" alt="">
+                                    <img class="slide-image" src="images/toptop4.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="images/top4.jpg" alt="">
+                                    <img   class="slide-image" src="images/toptop5.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img   class="slide-image" src="images/top5.jpg" alt="">
+                                    <img class="slide-image" src="images/toptop6.jpg" alt="">
                                 </div>
                                 <div class="item">
-                                    <img class="slide-image" src="images/top6.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="images/top7.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="images/top8.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="images/top9.jpg" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="images/top10.jpg" alt="">
+                                    <img class="slide-image" src="images/toptop3.jpg" alt="">
                                 </div>
                                 
                             </div>
@@ -184,10 +172,7 @@ while(rs.next())
                                <a href="topic.jsp?id=<%=topicId %>">Read More</a></p>
                         </div>
                     </div>
-                     
-                    
-                    
-<%
+  <%
 
 }
 
@@ -197,18 +182,42 @@ while(rs.next())
             <!-- End main content -->
 
             <div class="col-md-3">
-            <p class="lead">Side Bar Links</p>
-                <div class="list-group">
+               <div class="list-group">
                     <a href="#" class="list-group-item active">
-                        <h4 class="list-group-item-heading">Side Bar Link 1</h4>
-                        <p class="list-group-item-text">Recent Blog Posts</p>
-                      </a>
-                    <a href="#" class="list-group-item">Side Bar Link 2</a>
-                    <a href="#" class="list-group-item">Side Bar Link 3</a>
-                    <a href="#" class="list-group-item">Side Bar Link 4</a>
-                    <a href="#" class="list-group-item">Side Bar Link 5</a>
-                    <a href="#" class="list-group-item active">Side Bar Link 6</a>
-                </div>
+                        <h4 class="list-group-item-heading">Recent Blog Posts</h4>
+                      </a><%
+                      
+                      			Class.forName("com.mysql.jdbc.Driver").newInstance();
+                      			Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/sentiword", "root", "power");
+                      			Statement st1 = con1.createStatement();
+								//                      	String ids = "<script>document.writeln(data)</script>";
+
+					String query = "SELECT i.Id, Topic, g.date FROM blogissues i " +
+							"INNER JOIN " +
+							"( " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 1 ORDER BY date DESC LIMIT 1) a " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 2 ORDER BY date DESC LIMIT 1) b " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 3 ORDER BY date DESC LIMIT 1) c " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 4 ORDER BY date DESC LIMIT 1) d " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 5 ORDER BY date DESC LIMIT 1) e " +
+							"UNION ALL " +
+							"SELECT TopicID, date FROM (SELECT TopicID, Date FROM blogcomments WHERE TopicId  = 6 ORDER BY date DESC LIMIT 1) f " +
+							") g ON g.TopicId = i.id " +
+							"ORDER BY g.date DESC";
+					 ResultSet rs1 = st1.executeQuery(query);	
+                     
+					while(rs1.next()){
+                      %>
+ 		                   <a href="topic.jsp?id=<%=rs1.getString("Id")%>" class="list-group-item" ><%=rs1.getString("Topic") %></a>
+                    <%
+                    }
+                    %>
+                    
+                    </div>
 
                 <button class="btn btn-danger btn-block btn-lg" onclick="gotochart1()" >Monthly Activity on Blog</button>
                 <button class="btn btn-danger btn-block btn-lg" onclick="gotochart2()" >Comparision btween Threads</button>
