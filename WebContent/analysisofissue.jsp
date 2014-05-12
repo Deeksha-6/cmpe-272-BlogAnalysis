@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<!--Show positive and negative for each issue-->
 
 <head>
     <meta charset="utf-8">
@@ -158,6 +159,7 @@
     <!-- /.container -->
 
     <!-- JavaScript -->
+    <!--Charts Considered-->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/Chart.min.js"></script>
