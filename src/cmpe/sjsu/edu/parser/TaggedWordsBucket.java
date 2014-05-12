@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cmpe.sjsu.edu.parser;
 
 /**
@@ -91,8 +88,7 @@ class TaggedWordsBucket {
 	public void setSentenceScore(float totalPostiveScore) {
 		this.sentenceScore = (int) totalPostiveScore;
 	}
-	
-	
+
 	// all words context
 	public String getContext() {
 		return context;
