@@ -10,7 +10,9 @@
  */
  
  
-/* The Nivo Slider styles */
+
+
+/* The Nivo Slider styles for slider */
 .nivoSlider {
 	position:relative;
 }
@@ -19,7 +21,9 @@
 	top:0px;
 	left:0px;
 }
-/* If an image is wrapped in a link */
+
+
+/* this code is used If an image is wrapped in a link */
 .nivoSlider a.nivo-imageLink {
 	position:absolute;
 	top:0px;
@@ -32,7 +36,8 @@
 	z-index:60;
 	display:none;
 }
-/* The slices in the Slider */
+
+/*this is for  the slices in the Slider */
 .nivo-slice {
 	display:block;
 	position:absolute;

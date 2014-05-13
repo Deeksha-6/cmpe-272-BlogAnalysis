@@ -1,13 +1,4 @@
 package cmpe.sjsu.edu.parser;
-//package taggerExample;
-
-/**
- *
- * @author Sony
- */
-
-//package mining.blog.db;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Connection;
@@ -20,13 +11,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.StringTokenizer;
-
-
-
-
-
-
-
 
 
 //import mining.blog.Constants.Constants;
@@ -295,9 +279,6 @@ public class dbAcessClass {
 			System.out.println("query executed for the second time count::"+i);
 			
 			//System.out.println("time=" + time);
-			
-			
-			
 			//return parsedList;
 			}
 		
@@ -307,8 +288,6 @@ public class dbAcessClass {
 			return new java.sql.Date(today.getTime());
 			}
 		    
-		  	
-		
 		float getMin(ArrayList<Float> tempList){
 			float min=tempList.get(0);
 			for(int i=1;i<tempList.size();i++){
@@ -330,7 +309,5 @@ public class dbAcessClass {
 			
 			return min;
 		}
-		
-		
 		
 }

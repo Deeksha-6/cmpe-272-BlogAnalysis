@@ -189,6 +189,7 @@
 	<!-- /.container -->
 
 	<!-- JavaScript -->
+	<!--Total Analyis Chart -->
 	<script src="js/jquery-1.10.2.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/Chart.min.js"></script>
@@ -295,6 +296,7 @@
 <script type="text/javascript">
 	function goback(){
 		window.location.href="index.jsp";
+		/* Goes back to index page */
 		
 	}
 	

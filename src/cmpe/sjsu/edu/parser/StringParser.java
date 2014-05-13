@@ -1,9 +1,10 @@
 package cmpe.sjsu.edu.parser;
-
+import java.lang.*;
 import java.util.List;
 import java.util.StringTokenizer;
 import cmpe.sjsu.edu.parser.TaggedWordsBucket;
-
+import cmpe.sjsu.edu.parser.*;
+import java.sql.*;
 
 public class StringParser {
 	
@@ -53,6 +54,7 @@ public class StringParser {
 	System.out.println("type::"+type);
 	
 //	System.out.println("value of if"+(type.trim().equalsIgnoreCase("Adverb")||type.equalsIgnoreCase("adjective")));
+	// Here Advers is checked
 	if(type.trim().equalsIgnoreCase("Adverb")||type.equalsIgnoreCase("adjective"))
 	{
 		System.out.println("Word containing \".\""+word);

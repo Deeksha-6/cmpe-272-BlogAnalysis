@@ -5,7 +5,6 @@
 package cmpe.sjsu.edu.parser;
 
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,19 +39,8 @@ public class TaggerExample {
         // Initialize the tagger
         MaxentTagger tagger = new MaxentTagger("D:\\Java\\workspace\\taggerExample\\src\\taggerExample\\tagger\\left3words-wsj-0-18.tagger");
         dbAcessClass database = new dbAcessClass();
-        //database.insertFileIntoDatabase();
-        //	String sample="bastard.";
-        //String sample="The students of SJSU are unhappy with the coursework. It has been a tough task for the students. The students regret joining this college. Nevertheless it has been ranked the best.";
-        //String sample = "This blog is very bad . Poor job done by the developers . Very bad team work and stupid and horrible GUI. Improve team work.";
-       // The tagged string
-                
-        //String sample = "Hiking is a horrible idea. I don't like it.";
-        //String sample = "Hiking is good for health.";
-        //String sample = "I strongly agree with the author.";
-       // String sample1 = "This is an interesting topic to be discussed.";
-      
-      String comment = sample;//" This is a great initiative! I have always wished we could get the library hours extended. Please get this approved. I am supporting this idea.";
-        
+       
+      String comment = sample;
         String tagged = tagger.tagString(sample);
         // Output the result in the file "posTaggerOutPutFile.txt"
         
@@ -272,21 +260,9 @@ public class TaggerExample {
                      }
                    
                      System.out.println("parsedList in TaggerExample"+parsedList);
-                     //List<TaggedWordsBucket> completeList = database.calculateScores(parsedList, sample);
-                    
                      database.calculateScores(parsedList, sample, topicId);
                     
-              /*      FileWriter finalOutputFile = new FileWriter("finalOutput.txt", false);
-                    PrintWriter output = new PrintWriter(finalOutputFile);
-                     try {
-                            output.print(completeList);
-                        }
-                     finally {
-                                    output.close();
-                                    finalOutputFile.close();
-                     }*/
-
-	}
+              	}
 
 }
 
