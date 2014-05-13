@@ -12,6 +12,7 @@ public class StringParser {
         
 		/* This function is used to seperate the String based on our criteria 
 		 * and insert all of them in to the list */
+
         boolean  isExistingSentence = true;
 	int sentenceCounter = 1;
 	boolean tempEndOfSentenceVariable = true;
@@ -54,7 +55,7 @@ public class StringParser {
 	System.out.println("type::"+type);
 	
 //	System.out.println("value of if"+(type.trim().equalsIgnoreCase("Adverb")||type.equalsIgnoreCase("adjective")));
-	// Here Advers is checked
+	// Here Adverbs is checked
 	if(type.trim().equalsIgnoreCase("Adverb")||type.equalsIgnoreCase("adjective"))
 	{
 		System.out.println("Word containing \".\""+word);
