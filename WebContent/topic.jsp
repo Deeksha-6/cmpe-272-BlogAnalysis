@@ -72,7 +72,7 @@
 		//out.println("data "+data);		
  			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/sentiword", "root", "power");
+					"jdbc:mysql://sql3.freemysqlhosting.net:3306/sql339736", "sql339736", "xS8*xZ3!");
 			Statement st = con.createStatement();
 		//	String ids = "<script>document.writeln(data)</script>";
 			
@@ -86,6 +86,7 @@
 				topicImage=rs.getString("ImagePath");
 			}
 		
+			con.close();
  		%>
 
 		<div class="row">
@@ -124,6 +125,9 @@
 						<h3>See what people are saying..</h3>
 						<div class="clearfix" style="margin-top: 30px;">
 							<%
+							con = DriverManager.getConnection(
+									"jdbc:mysql://sql3.freemysqlhosting.net:3306/sql339736", "sql339736", "xS8*xZ3!");
+
 								st = con.createStatement();
 								rs = st.executeQuery("select Comment from blogcomments WHERE TopicId = \"" + idd[1] + "\" order by date desc limit 6");
 								//System.out.println("got data");
@@ -131,7 +135,8 @@
 									//                          	System.out.println("inside if");
 									while (rs.next()) {
 										String msg = rs.getString("Comment");
-							%>
+					
+										%>
 							<div class="media">
 								<a class="pull-left" href="#"> <img class="media-object"
 									style="width: 64px; height: 64px;" src="images/user.jpg"></a>
@@ -142,7 +147,7 @@
 
 							<%
 								}
-								
+								con.close();
 							%>
 
 
@@ -171,7 +176,7 @@
                       </a><%
                       
                       			Class.forName("com.mysql.jdbc.Driver").newInstance();
-                      			Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/sentiword", "root", "power");
+                      			Connection con1 = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql339736", "sql339736", "xS8*xZ3!");
                       			Statement st1 = con1.createStatement();
 								//                      	String ids = "<script>document.writeln(data)</script>";
 
@@ -198,6 +203,8 @@
  		                   <a href="topic.jsp?id=<%=rs1.getString("Id")%>" class="list-group-item" ><%=rs1.getString("Topic") %></a>
                     <%
                     }
+					
+					con1.close();
                     %>
                     
                     </div>
