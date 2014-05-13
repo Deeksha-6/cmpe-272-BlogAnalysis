@@ -54,6 +54,7 @@ public class StringParser {
 	System.out.println("type::"+type);
 	
 //	System.out.println("value of if"+(type.trim().equalsIgnoreCase("Adverb")||type.equalsIgnoreCase("adjective")));
+	// Here Advers is checked
 	if(type.trim().equalsIgnoreCase("Adverb")||type.equalsIgnoreCase("adjective"))
 	{
 		System.out.println("Word containing \".\""+word);
