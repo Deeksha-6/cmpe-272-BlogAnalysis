@@ -79,7 +79,7 @@
                       </a><%
                       
                       			Class.forName("com.mysql.jdbc.Driver").newInstance();
-                      			Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/sentiword", "root", "power");
+                      			Connection con1 = DriverManager.getConnection("jdbc:mysql://sql3.freemysqlhosting.net:3306/sql339736", "sql339736", "xS8*xZ3!");
                       			Statement st1 = con1.createStatement();
 								//                      	String ids = "<script>document.writeln(data)</script>";
 
@@ -106,6 +106,8 @@
  		                   <a href="topic.jsp?id=<%=rs1.getString("Id")%>" class="list-group-item" ><%=rs1.getString("Topic") %></a>
                     <%
                     }
+					
+					con1.close();
                     %>
                     
                     </div>
@@ -139,7 +141,7 @@
 
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		Connection con = DriverManager.getConnection(
-				"jdbc:mysql://localhost:3306/sentiword", "root", "power");
+				"jdbc:mysql://sql3.freemysqlhosting.net:3306/sql339736", "sql339736", "xS8*xZ3!");
 
 		Statement st = con.createStatement();
 		ResultSet rs = st
@@ -160,6 +162,8 @@
 			count[month - 1] = rs.getInt("count");
 
 		}
+		
+		con.close();
 
 		String temp = "";
 		for (int i = 0; i < count.length; i++)
