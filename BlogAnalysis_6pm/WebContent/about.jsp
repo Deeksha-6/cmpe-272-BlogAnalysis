@@ -130,6 +130,7 @@ This can be used for receiving customer reviews  for better Products and Service
     <!-- /.container -->
 
     <!-- JavaScript -->
+    <!--Go back to home page-->
     <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
